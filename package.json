@@ -1,0 +1,8 @@
+{
+  "name": "react-data-grid-proto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:CrossroadsCX/react-data-grid-proto.git",
+  "author": "Chris Birk <cmbirk@gmail.com>",
+  "license": "MIT"
+}
