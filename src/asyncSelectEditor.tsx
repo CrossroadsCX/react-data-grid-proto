@@ -1,5 +1,5 @@
 import React from 'react'
-import type { CalculatedColumn, EditorProps  } from 'react-data-grid'
+import type { CalculatedColumn, EditorProps } from 'react-data-grid'
 import Select, { ActionMeta, SingleValue, OptionsOrGroups } from 'react-select'
 import AsyncSelect from 'react-select/async'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import type { CalculatedColumn, EditorProps  } from 'react-data-grid'
+import type { CalculatedColumn, EditorProps } from 'react-data-grid'
 import Select, { ActionMeta, SingleValue } from 'react-select'
 
 type OptionType = { [key: string]: any }

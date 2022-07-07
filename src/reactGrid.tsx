@@ -29,18 +29,16 @@ const filterProducts = (input: string) => {
   return products.filter((product) => product.label.toLowerCase().includes(input.toLowerCase()))
 }
 
-const loadOptions = async (input: string): Promise<OptionsType> => {
-  return new Promise((resolve, reject) => {
-    const filteredProducts = filterProducts(input)
-    setTimeout(() => {
-      resolve(filteredProducts)
-    }, 1000)
-  })
-}
+const loadOptions = async (input: string): Promise<OptionsType> => new Promise((resolve, reject) => {
+  const filteredProducts = filterProducts(input)
+  setTimeout(() => {
+    resolve(filteredProducts)
+  }, 1000)
+})
 
 const states = [
   { label: 'Indiana', value: 'IN' },
-  { label: 'Illinois', value: 'IL'},
+  { label: 'Illinois', value: 'IL' },
 ]
 
 const isOption = (input: string | number | OptionType): input is OptionType => {
@@ -52,7 +50,7 @@ const isOption = (input: string | number | OptionType): input is OptionType => {
 }
 
 const selectFormatter = (props: FormatterProps<Row>) => {
-  const key = props.column.key
+  const { key } = props.column
   const { row } = props
   const option = row[key as keyof Row]
   if (option && isOption(option)) {
@@ -83,25 +81,15 @@ const columns = [
       editOnClick: true,
     },
     formatter: selectFormatter,
-    // formatter: (props: FormatterProps<Row>) => {
-    //   if (props.row.product) {
-    //     const { label, value } = props.row.product
-    //     return (<>{ label }</>)
-    //   }
-
-    //   return null
-    // }
   },
-];
+]
 
 const initialRows = [
   { id: 0, title: 'Example' },
-  { id: 1, title: 'Demo' }
-];
+  { id: 1, title: 'Demo' },
+]
 
-const rowKeyGetter = (row: Row): number => {
-  return row.id
-}
+const rowKeyGetter = (row: Row): number => row.id
 
 export const ReactGrid = () => {
   const [rows, setRows] = useState(initialRows)
