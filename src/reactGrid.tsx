@@ -1,11 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import DataGrid, { EditorProps, TextEditor } from 'react-data-grid'
+
 import SelectEditor from './selectEditor'
+import AsyncSelectEditor, { OptionsType } from './asyncSelectEditor'
 
 interface Row {
   id: number;
   title: string;
-  // editor?: typeof TextEditor;
+}
+
+const products = [
+  { label: 'Coke', value: 'coke' },
+  { label: 'Pepsi', value: 'pepsi' },
+  { label: 'Mountain Dew', value: 'mountain_dew' },
+  { label: 'Dr. Pepper', value: 'dr_pepper' },
+  { label: 'Arizona Iced Tea', value: 'arizona_iced_tea' },
+  { label: 'Mr. Pibb', value: 'mr_pibb' },
+]
+
+const filterProducts = (input: string) => {
+  console.log(input)
+  return products.filter((product) => product.label.toLowerCase().includes(input.toLowerCase()))
+}
+
+const loadOptions = async (input: string): Promise<OptionsType> => {
+  return new Promise((resolve, reject) => {
+    const filteredProducts = filterProducts(input)
+    setTimeout(() => {
+      resolve(filteredProducts)
+    }, 1000)
+  })
 }
 
 const states = [
@@ -22,8 +46,16 @@ const columns = [
     editor: (p: EditorProps<Row>) => (<SelectEditor {...p} options={states} />),
     editorOptions: {
       editOnClick: true,
-    }
-  }
+    },
+  },
+  {
+    key: 'product',
+    name: 'Product',
+    editor: (p: EditorProps<Row>) => (<AsyncSelectEditor {...p} loadOptions={loadOptions} />),
+    editorOptions: {
+      editOnClick: true,
+    },
+  },
 ];
 
 const initialRows = [
