@@ -1,13 +1,9 @@
 import React from 'react'
-import type { CalculatedColumn, EditorProps } from 'react-data-grid'
+import type { EditorProps } from 'react-data-grid'
 import Select, { ActionMeta, SingleValue } from 'react-select'
 
 type OptionType = { [key: string]: any }
 type OptionsType = Array<OptionType>
-
-interface SelectColumn<TRow, TSummaryRow> extends CalculatedColumn<TRow, TSummaryRow> {
-  options: OptionsType;
-}
 
 interface SelectEditorProps<TRow, TSummaryRow = unknown> extends EditorProps<TRow, TSummaryRow> {
   options?: OptionsType;
@@ -21,7 +17,7 @@ export default function SelectEditor<TRow, TSummaryRow>({
   row,
   column,
   onRowChange,
-  onClose,
+  // onClose,
   options,
 }: SelectEditorProps<TRow, TSummaryRow>) {
   const selectOptions: SelectOptions = {}
@@ -31,8 +27,6 @@ export default function SelectEditor<TRow, TSummaryRow>({
 
     onRowChange(newRow, true)
   }
-
-  console.log(options)
 
   if (options) {
     selectOptions.options = options
