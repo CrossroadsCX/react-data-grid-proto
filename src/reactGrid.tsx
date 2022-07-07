@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import DataGrid, { EditorProps, TextEditor } from 'react-data-grid'
+import DataGrid, { EditorProps, FormatterProps, TextEditor } from 'react-data-grid'
 
 import SelectEditor from './selectEditor'
-import AsyncSelectEditor, { OptionsType } from './asyncSelectEditor'
+import AsyncSelectEditor, { OptionType, OptionsType } from './asyncSelectEditor'
 
+type Product = {
+  label: string;
+  value: string;
+}
 interface Row {
   id: number;
   title: string;
+  state?: string;
+  product?: Product;
 }
 
 const products = [
@@ -37,6 +43,26 @@ const states = [
   { label: 'Illinois', value: 'IL'},
 ]
 
+const isOption = (input: string | number | OptionType): input is OptionType => {
+  if (typeof input === 'object' && input.label && input.value) {
+    return true
+  }
+
+  return false
+}
+
+const selectFormatter = (props: FormatterProps<Row>) => {
+  const key = props.column.key
+  const { row } = props
+  const option = row[key as keyof Row]
+  if (option && isOption(option)) {
+    const { label, value } = option
+    return (<>{label}</>)
+  }
+
+  return null
+}
+
 const columns = [
   { key: 'id', name: 'ID' },
   { key: 'title', name: 'Title', editor: TextEditor },
@@ -47,6 +73,7 @@ const columns = [
     editorOptions: {
       editOnClick: true,
     },
+    formatter: selectFormatter,
   },
   {
     key: 'product',
@@ -55,6 +82,15 @@ const columns = [
     editorOptions: {
       editOnClick: true,
     },
+    formatter: selectFormatter,
+    // formatter: (props: FormatterProps<Row>) => {
+    //   if (props.row.product) {
+    //     const { label, value } = props.row.product
+    //     return (<>{ label }</>)
+    //   }
+
+    //   return null
+    // }
   },
 ];
 
@@ -75,6 +111,6 @@ export const ReactGrid = () => {
   }, [rows])
 
   return (
-    <DataGrid columns={columns} rows={rows} onRowsChange={setRows} />
+    <DataGrid<Row> columns={columns} rows={rows} onRowsChange={setRows} />
   )
 }

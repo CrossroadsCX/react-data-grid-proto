@@ -27,8 +27,8 @@ export default function SelectEditor<TRow, TSummaryRow>({
   const selectOptions: SelectOptions = {}
 
   const onChange = (newValue: SingleValue<OptionType>, actionMeta: ActionMeta<OptionType>) => {
-    const newRow = { ...row, [column.key]: newValue?.value }
-    console.log(newRow)
+    const newRow = { ...row, [column.key]: newValue }
+
     onRowChange(newRow, true)
   }
 

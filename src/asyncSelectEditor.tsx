@@ -28,7 +28,7 @@ export default function AsyncSelectEditor<TRow, TSummaryRow>({
   const selectOptions: SelectOptions = {}
 
   const onChange = (newValue: SingleValue<OptionType>, actionMeta: ActionMeta<OptionType>) => {
-    const newRow = { ...row, [column.key]: newValue?.value }
+    const newRow = { ...row, [column.key]: newValue }
     console.log(newRow)
     onRowChange(newRow, true)
   }
