@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:CrossroadsCX/react-data-grid-proto.git",
   "author": "Chris Birk <cmbirk@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-data-grid": "^7.0.0-beta.13"
+  }
 }
