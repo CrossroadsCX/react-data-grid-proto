@@ -99,6 +99,6 @@ export const ReactGrid = () => {
   }, [rows])
 
   return (
-    <DataGrid<Row> columns={columns} rows={rows} onRowsChange={setRows} />
+    <DataGrid<Row> columns={columns} rows={rows} onRowsChange={setRows} rowKeyGetter={rowKeyGetter} />
   )
 }

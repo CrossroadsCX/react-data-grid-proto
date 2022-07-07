@@ -3711,7 +3711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.5.0":
+"@typescript-eslint/parser@npm:^5.30.5, @typescript-eslint/parser@npm:^5.5.0":
   version: 5.30.5
   resolution: "@typescript-eslint/parser@npm:5.30.5"
   dependencies:
@@ -11787,6 +11787,7 @@ __metadata:
     "@storybook/testing-library": ^0.0.13
     "@types/react": ^18.0.15
     "@typescript-eslint/eslint-plugin": ^5.30.5
+    "@typescript-eslint/parser": ^5.30.5
     babel-loader: ^8.2.5
     chromatic: ^6.7.0
     eslint: ^8.19.0
