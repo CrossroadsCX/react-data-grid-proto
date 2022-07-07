@@ -6,7 +6,11 @@
   "author": "Chris Birk <cmbirk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react-data-grid": "^7.0.0-beta.13"
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-data-grid": "^7.0.0-beta.13",
+    "react-dom": "^18.2.0",
+    "react-select": "^5.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
